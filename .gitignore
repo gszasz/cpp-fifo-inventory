@@ -1,0 +1,6 @@
+# Ignore any executables
+bin/*
+
+# Ignore backup files
+*~
+.#*
