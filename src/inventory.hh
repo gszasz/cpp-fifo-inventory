@@ -40,10 +40,10 @@ public:
     Inventory();                                // default constructor
 
     // buy a batch of units
-    void buy(const int& item, int units, const int& price);
+    bool buy(const int& item, const int& units, const float& cost);
 
     // sell given number number of units
-    int sell(const int& item, int units, const int& price);
+    float sell(const int& item, const int& units, const float& price);
 
     void execute(TransactionBuffer& backlog);   // execute set of transactions
 

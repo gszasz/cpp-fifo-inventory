@@ -27,10 +27,10 @@
 
 // decraration of a structure holiding single transaction entry
 struct Transaction {
-    int item;   // code of item
-    char type;  // transaction type ('B' = buy, 'S' = sell)
-    int units;  // number of units
-    int price;  // price per unit
+    int item;     // code of item
+    char type;    // transaction type ('B' = buy, 'S' = sell)
+    int units;    // number of units
+    float price;  // price per unit
 };
 
 class TransactionBuffer {
@@ -42,7 +42,7 @@ public:
     TransactionBuffer(const std::string& s);  // constructor from given string
 
     void add(const Transaction& t);  // add transaction record to buffer
-    void add(const int& item, const char& type, const int& units, const int& price);
+    void add(const int& item, const char& type, const int& units, const float& price);
 
     std::stringstream& getStream();  // get reference to buffer stream
 

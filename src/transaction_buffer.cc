@@ -40,7 +40,7 @@ void TransactionBuffer::add(const Transaction& t) {
 }
 
 // Add transaction record to buffer via arguments
-void TransactionBuffer::add(const int& item, const char& type, const int& units, const int& price) {
+void TransactionBuffer::add(const int& item, const char& type, const int& units, const float& price) {
     Transaction t;
     t.item = item;    // code of item
     t.type = type;    // transaction type ('B' = buy, 'S' = sell)
