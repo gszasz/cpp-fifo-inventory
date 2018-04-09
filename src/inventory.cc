@@ -28,11 +28,8 @@ using namespace std;
 
 // Default constructor
 Inventory::Inventory() {
-    InventoryQueue queue[MAX_ITEMS];
-    int totalUnits[MAX_ITEMS];
-    for (int i = 0; i < MAX_ITEMS; i++)
+    for (int i = 0; i < inventory::MAX_ITEMS; i++)
         totalUnits[i] = 0;
-    TransactionBuffer log;
 }
 
 // Buy batch of units
@@ -110,7 +107,7 @@ void Inventory::dumpLog(const string& filename) const {
 
 // Print statistics
 void Inventory::printStats() const {
-    for (int i = 0; i < MAX_ITEMS; i++) {
+    for (int i = 0; i < inventory::MAX_ITEMS; i++) {
         InventoryQueue q(queue[i]);
 
         cout << "Item " << i + 1 << ":" << endl;
