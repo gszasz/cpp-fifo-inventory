@@ -64,17 +64,22 @@ float Inventory::sell(const int& item, const int& units, const float& price) {
         return -1;
     }
     totalUnits[item-1] -= units;
-    Batch batch = queue[item-1].front();
-    int cogs = 0;
-    while (units >= batch.units) {
-        cogs += batch.units * batch.price;
-        units -= batch.units;
+    float cogs = 0;
+    int remainingUnits = units;
+    // queue[item-1].front() returns reference to Batch.  Since the reference in
+    // C++ cannot be changed once assigned to variable, we need convert it to
+    // pointer here, otherwise batch could not be reassigned during iterations.
+    Batch* batch = &(queue[item-1].front());
+    while (remainingUnits >= batch->units) {
+        cogs += batch->units * batch->price;
+        remainingUnits -= batch->units;
         queue[item-1].pop();
-        batch = queue[item-1].front();
+        batch = &(queue[item-1].front());
     }
-    cogs += units * batch.price;
-    batch.units -= units;
-
+    if (remainingUnits > 0) {
+        cogs += remainingUnits * batch->price;
+        batch->units -= remainingUnits;
+    }
     log.add(item, 'S', units, price);
     return cogs;
 }
