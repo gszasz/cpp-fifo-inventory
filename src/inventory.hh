@@ -25,16 +25,18 @@
 #include "inventory_queue.hh"     // required for 'InventoryQueue'
 #include "transaction_buffer.hh"  // required for 'TransactionBuffer'
 
+namespace inventory {
+    const int MAX_ITEMS = 3;
+}
+
 class Inventory {
 
 private:
-    InventoryQueue queue[];
-    int totalUnits[];
+    InventoryQueue queue[inventory::MAX_ITEMS];
+    int totalUnits[inventory::MAX_ITEMS];
     TransactionBuffer log;
 
 public:
-    enum { MAX_ITEMS = 3 };                     // class constants
-
     Inventory();                                // default constructor
 
     // buy a batch of units

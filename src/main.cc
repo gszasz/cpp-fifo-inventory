@@ -30,7 +30,7 @@ using namespace std;
 void list_inventory_dialog(Inventory& i) {
     int item = 1;  // item
 
-    cout << "Item: ";
+    cout << "Item: (1-" << inventory::MAX_ITEMS << "): ";
     cin >> item;
 
     i.printItem(item);
@@ -42,7 +42,7 @@ void purchase_dialog(Inventory& i) {
     int units = 0;      // number of units
     float cost = 0.0;   // cost per unit
 
-    cout << "Item: ";
+    cout << "Item (1-" << inventory::MAX_ITEMS << "): ";
     cin >> item;
     cout << "Number of units: ";
     cin >> units;
@@ -59,7 +59,7 @@ void sale_dialog(Inventory& i) {
     int units = 0;      // number of units
     float price = 0.0;  // price per unit
 
-    cout << "Item: ";
+    cout << "Item: (1-" << inventory::MAX_ITEMS << "): ";
     cin >> item;
     cout << "Number of units: ";
     cin >> units;
