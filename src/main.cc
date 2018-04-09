@@ -32,6 +32,7 @@ void list_inventory_dialog(Inventory& i) {
 
     cout << "Item: (1-" << inventory::MAX_ITEMS << "): ";
     cin >> item;
+    cout << endl;
 
     i.printItem(item);
 }
@@ -46,11 +47,16 @@ void purchase_dialog(Inventory& i) {
     cin >> item;
     cout << "Number of units: ";
     cin >> units;
-    cout << "Price per unit: ";
-    cin >> price;
+    cout << "Cost per unit: ";
+    cin >> cost;
     cout << endl;
 
-    i.buy(item, units, price);
+    if (i.buy(item, units, cost)) {
+        float totalCost = units * cost;
+        cout << units << "\t@\t" << cost << fixed << setprecision(2) << " EUR" << endl;
+        cout << "------------------------------" << endl;
+        cout << "Total Cost\t" << fixed << setprecision(2) << totalCost << " EUR" << endl;
+    }
 }
 
 // Interactive dialog for selling an inventory item
@@ -66,8 +72,16 @@ void sale_dialog(Inventory& i) {
     cout << "Price per unit: ";
     cin >> price;
     cout << endl;
-
-    i.sell(item, units, price);
+    float cogs = i.sell(item, units, price);
+    if (cogs > 0) {
+        float totalCost = units * price;
+        cout << units << "\t@\t" << fixed << setprecision(2) << price << " EUR" << endl;
+        cout << "------------------------------" << endl;
+        cout << "Total Sales\t" << fixed << setprecision(2) << totalCost << " EUR" << endl;
+        cout << "COGS\t\t" << fixed << setprecision(2) << cogs << " EUR" << endl;
+        cout << "------------------------------" << endl;
+        cout << "Gross Profit\t" << fixed << setprecision(2) << totalCost - cogs << " EUR" << endl;
+    }
 }
 
 // Main program

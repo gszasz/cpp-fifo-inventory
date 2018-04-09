@@ -115,16 +115,16 @@ void Inventory::printStats() const {
     for (int i = 0; i < inventory::MAX_ITEMS; i++) {
         InventoryQueue q(queue[i]);
 
-        cout << "Item " << i + 1 << ":" << endl;
-        int sum = 0;
+        cout << endl << "Item " << i + 1 << ":" << endl << endl;
+        float sum = 0;
         while (!q.empty()) {
             Batch b = q.front();
             sum += b.units * b.price;
-            cout << "\t" << b.units << "\t@\t" << b.price << endl;
+            cout << "\t" << b.units << "\t@\t" << fixed << setprecision(2) << b.price << " EUR" << endl;
             q.pop();
         }
-        cout << "\t" << "---------------------------------" << endl;
-        cout << "\t" << "Sum\t\t" << sum << endl;
+        cout << "\t" << "------------------------------" << endl;
+        cout << "\t" << "Total cost\t" << fixed << setprecision(2) << sum << " EUR" << endl;
     }
 }
 
@@ -141,7 +141,7 @@ void Inventory::printItem(const int& i) const {
     InventoryQueue q(queue[i-1]);
     while (!q.empty()) {
         Batch b = q.front();
-        cout << b.units << "\t@\t" << b.price << endl;
+        cout << b.units << "\t@\t" << fixed << setprecision(2) << b.price << " EUR" << endl;
         q.pop();
     }
 }
