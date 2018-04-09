@@ -36,23 +36,35 @@ Inventory::Inventory() {
 }
 
 // Buy batch of units
-void Inventory::buy(const int& item, int units, const int& price) {
-    if (units == 0)
-        cout << "warning: zero units in transaction" << endl;
-    queue[item-1].emplace(units, price);
+bool Inventory::buy(const int& item, const int& units, const float& cost) {
+    if (item > inventory::MAX_ITEMS) {
+        cout << item << ": item out of range." << endl;
+        return false;
+    }
+    else if (units <= 0) {
+        cout << units << ": invalid number of units" << endl;
+        return false;
+    }
     totalUnits[item-1] += units;
-    log.add(item, 'B', units, price);
+    queue[item-1].emplace(units, cost);
+
+    log.add(item, 'B', units, cost);
+    return true;
 }
 
 // Sell units from the inventory
-int Inventory::sell(const int& item, int units, const int& price) {
-    if (units < totalUnits[item-1]) {
-        cout << endl << "Transaction failed: not enough units in the inventory";
+float Inventory::sell(const int& item, const int& units, const float& price) {
+    if (item > inventory::MAX_ITEMS) {
+        cout << item << ": item out of range." << endl;
         return -1;
     }
-    else if (units == 0) {
-        cout << "warning: zero units in transaction" << endl;
-        return 0;
+    else if (units > totalUnits[item-1]) {
+        cout << units << ": not enough units in the inventory (units available: " << totalUnits[item-1] << ")" << endl;
+        return -1;
+    }
+    else if (units <= 0) {
+        cout << units << ": invalid number of units" << endl;
+        return -1;
     }
     totalUnits[item-1] -= units;
     Batch batch = queue[item-1].front();
@@ -116,6 +128,14 @@ void Inventory::printStats() const {
 
 // Print item's inventory
 void Inventory::printItem(const int& i) const {
+    if (i > inventory::MAX_ITEMS) {
+        cout << i << ": item out of range." << endl;
+        return;
+    }
+    else if (queue[i-1].empty()) {
+        cout << i << ": inventory is empty" << endl;
+        return;
+    }
     InventoryQueue q(queue[i-1]);
     while (!q.empty()) {
         Batch b = q.front();
