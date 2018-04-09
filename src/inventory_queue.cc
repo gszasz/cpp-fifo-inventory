@@ -124,13 +124,3 @@ void InventoryQueue::copyList(Node* head, Node*& cloneHead, Node*& cloneTail) {
     }
     cloneHead = cloneNode;
 }
-
-
-void InventoryQueue::printList() const {
-    Node* currentNode = head;
-
-    while (currentNode != NULL) {
-        cout << currentNode->data.units << " @ " << currentNode->data.price << endl;
-        currentNode = currentNode->next;
-    }
-}
