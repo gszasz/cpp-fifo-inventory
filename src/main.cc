@@ -19,14 +19,16 @@
  * FIFO-inventory.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <iostream>
-#include <string>
+#include <iostream>  // required for 'cout', 'cin', << and >>
+#include <iomanip>   // required for 'fixed' and 'setprecision'
+#include <string>    // required for 'string'
 #include "inventory.hh"
+
 using namespace std;
 
-
+// Interactive dialog showing list of inventory for the given item
 void list_inventory_dialog(Inventory& i) {
-    int item = 1;
+    int item = 1;  // item
 
     cout << "Item: ";
     cin >> item;
@@ -34,10 +36,11 @@ void list_inventory_dialog(Inventory& i) {
     i.printItem(item);
 }
 
+// Interactive dialog for buying an inventory item
 void purchase_dialog(Inventory& i) {
-    int item;
-    int units;
-    float price;
+    int item = 1;       // item
+    int units = 0;      // number of units
+    float cost = 0.0;   // cost per unit
 
     cout << "Item: ";
     cin >> item;
@@ -50,10 +53,11 @@ void purchase_dialog(Inventory& i) {
     i.buy(item, units, price);
 }
 
+// Interactive dialog for selling an inventory item
 void sale_dialog(Inventory& i) {
-    int item;
-    int units;
-    float price;
+    int item = 1;       // item
+    int units = 0;      // number of units
+    float price = 0.0;  // price per unit
 
     cout << "Item: ";
     cin >> item;
@@ -66,7 +70,7 @@ void sale_dialog(Inventory& i) {
     i.sell(item, units, price);
 }
 
-
+// Main program
 int main(int argc, char **argv) {
 
     const string WELCOME =

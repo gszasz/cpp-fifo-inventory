@@ -22,10 +22,11 @@
 #ifndef INVENTORY_HH
 #define INVENTORY_HH
 
-#include "inventory_queue.hh"     // required for InventoryQueue
-#include "transaction_buffer.hh"  // required for TransactionBuffer
+#include "inventory_queue.hh"     // required for 'InventoryQueue'
+#include "transaction_buffer.hh"  // required for 'TransactionBuffer'
 
 class Inventory {
+
 private:
     InventoryQueue queue[];
     int totalUnits[];

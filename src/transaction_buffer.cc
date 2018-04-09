@@ -19,9 +19,11 @@
  * FIFO-inventory.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <iostream>
-#include <fstream>
+#include <iostream>  // required for <<
+#include <iomanip>   // required for 'fixed' and 'setprecision'
+#include <fstream>   // required for 'ifstream' and 'ofstream'
 #include "transaction_buffer.hh"
+
 using namespace std;
 
 // Default constructor
@@ -67,7 +69,6 @@ void TransactionBuffer::write(const string& filename) const {
     ofstream outputFile(filename.c_str());
     outputFile << buffer.str();
     outputFile.close();
-
 }
 
 // Clear buffer

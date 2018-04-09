@@ -19,9 +19,9 @@
  * FIFO-inventory.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <iostream>
-#include <cstddef>
+#include <cstddef>  // required for NULL
 #include "inventory_queue.hh"
+
 using namespace std;
 
 // Standard constructor

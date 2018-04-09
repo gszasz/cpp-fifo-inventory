@@ -22,8 +22,8 @@
 #ifndef TRANSACTION_BUFFER_HH
 #define TRANSACTION_BUFFER_HH
 
-#include <sstream>  // required for std::stringstream
-#include <string>   // required for string
+#include <sstream>  // required for 'std::stringstream'
+#include <string>   // required for 'std::string'
 
 // decraration of a structure holiding single transaction entry
 struct Transaction {

@@ -19,9 +19,11 @@
  * FIFO-inventory.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <iostream>
-#include <cstdio>
+#include <iostream>  // required for 'cout' and <<
+#include <iomanip>   // required for 'fixed' and 'setprecision'
+#include <cstdio>    // required for 'sscanf'
 #include "inventory.hh"
+
 using namespace std;
 
 // Default constructor
@@ -72,7 +74,7 @@ int Inventory::sell(const int& item, int units, const int& price) {
 void Inventory::execute(TransactionBuffer& backlog) {
     stringstream& backlogStream = backlog.getStream();
     string line;
-    while(getline(backlogStream, line)) {
+    while (getline(backlogStream, line)) {
         Transaction t;
         sscanf(line.c_str(), "%d%c %d @ %f EUR", &t.item, &t.type, &t.units, &t.price);
         switch(t.type) {
