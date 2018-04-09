@@ -76,7 +76,7 @@ void Inventory::execute(TransactionBuffer& backlog) {
     string line;
     while (getline(backlogStream, line)) {
         Transaction t;
-        sscanf(line.c_str(), "%d%c %d @ %f EUR", &t.item, &t.type, &t.units, &t.price);
+        sscanf(line.c_str(), "%d%c %d %f", &t.item, &t.type, &t.units, &t.price);
         switch(t.type) {
         case 'B':
             buy(t.item, t.units, t.price);

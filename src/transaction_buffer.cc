@@ -36,7 +36,7 @@ TransactionBuffer::TransactionBuffer(const string& s) {
 
 // Add transaction record to buffer via 'Transaction' structure
 void TransactionBuffer::add(const Transaction& t) {
-    buffer << t.item << t.type << " " << t.units << " @ " << t.price << " EUR" << endl;
+    buffer << t.item << t.type << " " << t.units << " " << fixed << setprecision(2) << t.price << endl;
 }
 
 // Add transaction record to buffer via arguments
