@@ -2,7 +2,7 @@
 
 An example of a FIFO inventory management system implementation in C++.  Since
 the code serves purely for educational purposes, it deliberately omits templates
-and inheritance.
+and inheritance.  See [documentation](docs/README.md) for more details.
 
 ## Installation
 
