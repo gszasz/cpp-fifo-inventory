@@ -29,7 +29,7 @@ using namespace std;
 // Default constructor
 Inventory::Inventory() {
     for (int i = 0; i < inventory::MAX_ITEMS; i++)
-        totalUnits[i] = 0;
+        mTotalUnits[i] = 0;
 }
 
 // Buy batch of units
@@ -42,10 +42,10 @@ bool Inventory::buy(const int& item, const int& units, const float& cost) {
         cout << units << ": invalid number of units" << endl;
         return false;
     }
-    totalUnits[item-1] += units;
-    queue[item-1].emplace(units, cost);
+    mTotalUnits[item-1] += units;
+    mQueue[item-1].emplace(units, cost);
 
-    log.add(item, 'B', units, cost);
+    mLog.add(item, 'B', units, cost);
     return true;
 }
 
@@ -55,32 +55,32 @@ float Inventory::sell(const int& item, const int& units, const float& price) {
         cout << item << ": item out of range." << endl;
         return -1;
     }
-    else if (units > totalUnits[item-1]) {
-        cout << units << ": not enough units in the inventory (units available: " << totalUnits[item-1] << ")" << endl;
+    else if (units > mTotalUnits[item-1]) {
+        cout << units << ": not enough units in the inventory (units available: " << mTotalUnits[item-1] << ")" << endl;
         return -1;
     }
     else if (units <= 0) {
         cout << units << ": invalid number of units" << endl;
         return -1;
     }
-    totalUnits[item-1] -= units;
+    mTotalUnits[item-1] -= units;
     float cogs = 0;
     int remainingUnits = units;
-    // queue[item-1].front() returns reference to Batch.  Since the reference in
+    // mQueue[item-1].front() returns reference to Batch.  Since the reference in
     // C++ cannot be changed once assigned to variable, we need convert it to
     // pointer here, otherwise batch could not be reassigned during iterations.
-    Batch* batch = &(queue[item-1].front());
+    Batch* batch = &(mQueue[item-1].front());
     while (remainingUnits >= batch->units) {
         cogs += batch->units * batch->price;
         remainingUnits -= batch->units;
-        queue[item-1].pop();
-        batch = &(queue[item-1].front());
+        mQueue[item-1].pop();
+        batch = &(mQueue[item-1].front());
     }
     if (remainingUnits > 0) {
         cogs += remainingUnits * batch->price;
         batch->units -= remainingUnits;
     }
-    log.add(item, 'S', units, price);
+    mLog.add(item, 'S', units, price);
     return cogs;
 }
 
@@ -107,13 +107,13 @@ void Inventory::execute(TransactionBuffer& backlog) {
 
 // Write transaction log to file
 void Inventory::dumpLog(const string& filename) const {
-    log.write(filename);
+    mLog.write(filename);
 }
 
 // Print statistics
 void Inventory::printStats() const {
     for (int i = 0; i < inventory::MAX_ITEMS; i++) {
-        InventoryQueue q(queue[i]);
+        InventoryQueue q(mQueue[i]);
 
         cout << endl << "Item " << i + 1 << ":" << endl << endl;
         float sum = 0;
@@ -134,11 +134,11 @@ void Inventory::printItem(const int& i) const {
         cout << i << ": item out of range." << endl;
         return;
     }
-    else if (queue[i-1].empty()) {
+    else if (mQueue[i-1].empty()) {
         cout << i << ": inventory is empty" << endl;
         return;
     }
-    InventoryQueue q(queue[i-1]);
+    InventoryQueue q(mQueue[i-1]);
     while (!q.empty()) {
         Batch b = q.front();
         cout << b.units << "\t@\t" << fixed << setprecision(2) << b.price << " EUR" << endl;

@@ -35,7 +35,7 @@ struct Transaction {
 
 class TransactionBuffer {
 private:
-    std::stringstream buffer;  // internal string stream buffer
+    std::stringstream mBuffer;  // internal string stream buffer
 
 public:
     TransactionBuffer();                      // default constructor

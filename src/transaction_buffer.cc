@@ -27,16 +27,20 @@
 using namespace std;
 
 // Default constructor
-TransactionBuffer::TransactionBuffer() { }
+TransactionBuffer::TransactionBuffer() {
+    // To keep default constructor accessible while having also defined a
+    // parameterized constructor, it is necessary to explicitly define an empty
+    // argumentless constructor.
+}
 
 // Construct object from given string
 TransactionBuffer::TransactionBuffer(const string& s) {
-    buffer << s;
+    mBuffer << s;
 }
 
 // Add transaction record to buffer via 'Transaction' structure
 void TransactionBuffer::add(const Transaction& t) {
-    buffer << t.item << t.type << " " << t.units << " " << fixed << setprecision(2) << t.price << endl;
+    mBuffer << t.item << t.type << " " << t.units << " " << fixed << setprecision(2) << t.price << endl;
 }
 
 // Add transaction record to buffer via arguments
@@ -47,31 +51,32 @@ void TransactionBuffer::add(const int& item, const char& type, const int& units,
     t.units = units;  // number of units
     t.price = price;  // price per unit
 
-    add(t);
+    add(t);  // call add(const Transaction& t) member function
 }
 
 // Get reference to buffer stream
 stringstream& TransactionBuffer::getStream()  {
-    return buffer;
+    return mBuffer;
 }
 
 // Read buffer from file
 void TransactionBuffer::read(const string& filename) {
     ifstream inputFile(filename.c_str());
     string line;
-    while(getline(inputFile, line))
-        buffer << line << endl;
+    while (getline(inputFile, line))
+        mBuffer << line << endl;
     inputFile.close();
 }
 
 // Write buffer to file
 void TransactionBuffer::write(const string& filename) const {
     ofstream outputFile(filename.c_str());
-    outputFile << buffer.str();
+    outputFile << mBuffer.str();
     outputFile.close();
 }
 
 // Clear buffer
 void TransactionBuffer::clear() {
-    buffer.clear();
+    mBuffer.str("");
+    mBuffer.clear();
 }

@@ -32,9 +32,9 @@ namespace inventory {
 class Inventory {
 
 private:
-    InventoryQueue queue[inventory::MAX_ITEMS];
-    int totalUnits[inventory::MAX_ITEMS];
-    TransactionBuffer log;
+    InventoryQueue mQueue[inventory::MAX_ITEMS];
+    int mTotalUnits[inventory::MAX_ITEMS];
+    TransactionBuffer mLog;
 
 public:
     Inventory();                                // default constructor

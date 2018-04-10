@@ -27,7 +27,7 @@
 using namespace std;
 
 // Interactive dialog showing list of inventory for the given item
-void list_inventory_dialog(Inventory& i) {
+void listInventoryDialog(Inventory& i) {
     int item = 1;  // item
 
     cout << "Item: (1-" << inventory::MAX_ITEMS << "): ";
@@ -38,7 +38,7 @@ void list_inventory_dialog(Inventory& i) {
 }
 
 // Interactive dialog for buying an inventory item
-void purchase_dialog(Inventory& i) {
+void purchaseDialog(Inventory& i) {
     int item = 1;       // item
     int units = 0;      // number of units
     float cost = 0.0;   // cost per unit
@@ -60,7 +60,7 @@ void purchase_dialog(Inventory& i) {
 }
 
 // Interactive dialog for selling an inventory item
-void sale_dialog(Inventory& i) {
+void saleDialog(Inventory& i) {
     int item = 1;       // item
     int units = 0;      // number of units
     float price = 0.0;  // price per unit
@@ -152,16 +152,16 @@ int main(int argc, char **argv) {
 
         switch (command) {
         case 'i':  // list inventory for the item
-            list_inventory_dialog(inventory);
+            listInventoryDialog(inventory);
             break;
         case 'p':  // print statistics of all items
             inventory.printStats();
             break;
         case 'b':  // 'buy' specified amount of units of the selected item
-            purchase_dialog(inventory);
+            purchaseDialog(inventory);
             break;
         case 's':  // 'sell' specified amount of units of the selected item
-            sale_dialog(inventory);
+            saleDialog(inventory);
             break;
         case 'r':  // read inventory from file ('inventory.txt')
             backlog.read("inventory.txt");

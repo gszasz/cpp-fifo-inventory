@@ -26,52 +26,50 @@ using namespace std;
 
 // Standard constructor
 InventoryQueue::InventoryQueue() {
-    head = tail = NULL;
+    mHead = mTail = NULL;
 }
 
 // Copy constructor
 InventoryQueue::InventoryQueue(const InventoryQueue& q) {
-    if (q.head == NULL)
-        head = tail = NULL;
+    if (q.mHead == NULL)
+        mHead = mTail = NULL;
     else
-        copyList(q.head, head, tail);
+        copyList(q.mHead, mHead, mTail);
 }
 
 // Explicit destructor
 InventoryQueue::~InventoryQueue() {
-    Node* currentNode;
-    while (head != NULL) {
-        currentNode = head;
-        head = head->next;
-        delete currentNode;
+    Node* frontNode;
+    while (mHead != NULL) {
+        frontNode = mHead;
+        mHead = mHead->next;
+        delete frontNode;
     }
 }
 
 // Append new node to the back
 void InventoryQueue::push(const Batch& data) {
-
-    Node* node = new Node;
-
-    node->data = data;
-    node->next = NULL;
-    if (head == NULL)
-        head = tail = node;
+    Node* newNode = new Node;
+    newNode->data = data;
+    newNode->next = NULL;
+    if (mHead == NULL)
+        mHead = mTail = newNode;
     else {
-        tail->next = node;
-        tail = node;
+        mTail->next = newNode;
+        mTail = newNode;
     }
 }
 
 // Remove node at the front
 void InventoryQueue::pop() {
-    if (!empty()) {
-        Node* currentNode = head;
-        head = head->next;
-        delete currentNode;
+    if (mHead != NULL) {
+        Node* frontNode = mHead;
+        mHead = mHead->next;
+        delete frontNode;
     }
 }
 
-// Construct new Batch structure and append node to the back
+// Construct new Batch structure and append new node to the back
 void InventoryQueue::emplace(const int& units, const float& price) {
     Batch data;
     data.units = units;
@@ -79,31 +77,31 @@ void InventoryQueue::emplace(const int& units, const float& price) {
     push(data);
 }
 
-// Return reference to the data of the head node
+// Return reference to the data of the front node
 Batch& InventoryQueue::front() {
-    return head->data;
+    return mHead->data;
 }
 
-// Return reference to the date of the tail node
+// Return reference to the date of the back node
 Batch& InventoryQueue::back() {
-    return tail->data;
+    return mTail->data;
 }
 
 // Return number of nodes in the queue
 int InventoryQueue::size() const {
-    Node* currentNode = head;
+    Node* node = mHead;
 
     int listSize = 0;
-    while (currentNode != NULL) {
+    while (node != NULL) {
         listSize++;
-        currentNode = currentNode->next;
+        node = node->next;
     }
     return listSize;
 }
 
 // Test whether the queue is empty
 bool InventoryQueue::empty() const {
-    return (head == NULL);
+    return (mHead == NULL);
 }
 
 // Helper function for making a deep copy of the list.  This implementation uses

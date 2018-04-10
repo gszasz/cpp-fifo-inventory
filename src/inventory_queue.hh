@@ -40,8 +40,8 @@ struct Node {
 class InventoryQueue {
 
 private:
-    Node* head;  // pointer to the front element of the list
-    Node* tail;  // pointer to the rear element of the list
+    Node* mHead;  // pointer to the front element of the list
+    Node* mTail;  // pointer to the rear element of the list
 
 public:
     InventoryQueue();                         // default constructor
