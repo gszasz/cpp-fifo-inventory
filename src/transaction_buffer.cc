@@ -39,12 +39,12 @@ TransactionBuffer::TransactionBuffer(const string& s) {
 }
 
 // Add transaction record to buffer via 'Transaction' structure
-void TransactionBuffer::add(const Transaction& t) {
+void TransactionBuffer::add(Transaction t) {
     mBuffer << t.item << t.type << " " << t.units << " " << fixed << setprecision(2) << t.price << endl;
 }
 
 // Add transaction record to buffer via arguments
-void TransactionBuffer::add(const int& item, const char& type, const int& units, const float& price) {
+void TransactionBuffer::add(int item, char type, int units, float price) {
     Transaction t;
     t.item = item;    // code of item
     t.type = type;    // transaction type ('B' = buy, 'S' = sell)

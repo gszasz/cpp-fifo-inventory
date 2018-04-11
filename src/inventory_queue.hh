@@ -48,11 +48,11 @@ public:
     InventoryQueue(const InventoryQueue& q);  // copy constructor
     ~InventoryQueue();                        // explicit destructor
 
-    void push(const Batch& data);  // append new node to the back
-    void pop();                    // remove node at the front
+    void push(Batch data);  // append new node to the back
+    void pop();             // remove node at the front
 
     // construct new Batch structure and append node to the back
-    void emplace(const int& units, const float& price);
+    void emplace(int units, float price);
 
     Batch& front();  // return reference to the data of the head node
     Batch& back();   // return reference to the date of the tail node

@@ -40,18 +40,19 @@ public:
     Inventory();                                // default constructor
 
     // buy a batch of units
-    bool buy(const int& item, const int& units, const float& cost);
+    bool buy(int item, int units, float cost);
 
     // sell given number number of units
-    float sell(const int& item, const int& units, const float& price);
+    float sell(int item, int units, float price);
 
-    void execute(TransactionBuffer& backlog);   // execute set of transactions
+    // execute set of transactions
+    void execute(TransactionBuffer& backlog);
 
     // write transaction log to file
     void dumpLog(const std::string& filename) const;
 
     void printStats() const;                    // print statistics
-    void printItem(const int& item) const;      // print item's inventory
+    void printItem(int item) const;      // print item's inventory
 };
 
 #endif  // INVENTORY_HH

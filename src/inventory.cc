@@ -33,7 +33,7 @@ Inventory::Inventory() {
 }
 
 // Buy batch of units
-bool Inventory::buy(const int& item, const int& units, const float& cost) {
+bool Inventory::buy(int item, int units, float cost) {
     if (item > inventory::MAX_ITEMS) {
         cout << item << ": item out of range." << endl;
         return false;
@@ -50,7 +50,7 @@ bool Inventory::buy(const int& item, const int& units, const float& cost) {
 }
 
 // Sell units from the inventory
-float Inventory::sell(const int& item, const int& units, const float& price) {
+float Inventory::sell(int item, int units, float price) {
     if (item > inventory::MAX_ITEMS) {
         cout << item << ": item out of range." << endl;
         return -1;
@@ -129,7 +129,7 @@ void Inventory::printStats() const {
 }
 
 // Print item's inventory
-void Inventory::printItem(const int& i) const {
+void Inventory::printItem(int i) const {
     if (i > inventory::MAX_ITEMS) {
         cout << i << ": item out of range." << endl;
         return;

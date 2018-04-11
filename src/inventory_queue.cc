@@ -48,7 +48,7 @@ InventoryQueue::~InventoryQueue() {
 }
 
 // Append new node to the back
-void InventoryQueue::push(const Batch& data) {
+void InventoryQueue::push(Batch data) {
     Node* newNode = new Node;
     newNode->data = data;
     newNode->next = NULL;
@@ -70,7 +70,7 @@ void InventoryQueue::pop() {
 }
 
 // Construct new Batch structure and append new node to the back
-void InventoryQueue::emplace(const int& units, const float& price) {
+void InventoryQueue::emplace(int units, float price) {
     Batch data;
     data.units = units;
     data.price = price;

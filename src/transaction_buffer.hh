@@ -41,8 +41,8 @@ public:
     TransactionBuffer();                      // default constructor
     TransactionBuffer(const std::string& s);  // constructor from given string
 
-    void add(const Transaction& t);  // add transaction record to buffer
-    void add(const int& item, const char& type, const int& units, const float& price);
+    void add(Transaction t);  // add transaction record to buffer
+    void add(int item, char type, int units, float price);
 
     std::stringstream& getStream();  // get reference to buffer stream
 

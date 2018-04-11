@@ -3,11 +3,11 @@ digraph hierarchy {
     node[shape=record,style=filled,fillcolor=gray95,fontname="Bitstream Vera Sans",fontsize=8]
     edge[dir=both, arrowtail=none, arrowhead=vee]
    
-    2[label = "{&laquo;class&raquo;\nInventory|- mQueue : InventoryQueue[MAX_ITEMS]\l- mTotalUnits : int[MAX_ITEMS]\l- mLog : TransactionBuffer\l|+ Inventory()\l+ buy(item : int&, units : int&, cost : float&) : bool\l+ sell(item : int&, units : int&, price : float&) : float\l+ execute(backlog : TransactionBuffer&) : void\l+ dumpLog(filename : string&) : void\l+ printStats() : void\l+ printItem(item : int&) : void\l}"]
-    3[label = "{&laquo;class&raquo;\nInventoryQueue|- mHead : Node*\l- mTail : Node*\l|+ InventoryQueue()\l+ InventoryQueue(q : InventoryQueue&)\l+ ~InventoryQueue()\l+ push(data : Batch&) : void\l+ pop() : void\l+ emplace(units : int&, price : float&) : void\l+ front() : Batch&\l+ back() : Batch&\l+ size() : int\l+ empty() : bool\l+ copyList(head : Node*, cloneHead : Node*&, cloneTail : Node*&) : void\l+ printList() : void\l}"] 
-    4[label = "{&laquo;struct&raquo;\nNode|+ data : Batch\l+ next : Node*}"]
+    2[label = "{&laquo;class&raquo;\nInventory|- mQueue : InventoryQueue[MAX_ITEMS]\l- mTotalUnits : int[MAX_ITEMS]\l- mLog : TransactionBuffer\l|+ Inventory()\l+ buy(item : int, units : int, cost : float) : bool\l+ sell(item : int, units : int, price : float) : float\l+ execute(backlog : TransactionBuffer&) : void\l+ dumpLog(filename : const string&) : void\l+ printStats() : void\l+ printItem(item : int) : void\l}"]
+    3[label = "{&laquo;class&raquo;\nInventoryQueue|- mHead : Node*\l- mTail : Node*\l|+ InventoryQueue()\l+ InventoryQueue(q : InventoryQueue&)\l+ ~InventoryQueue()\l+ push(data : Batch) : void\l+ pop() : void\l+ emplace(units : int, price : float) : void\l+ front() : Batch&\l+ back() : Batch&\l+ size() : int\l+ empty() : bool\l+ copyList(head : Node*, cloneHead : Node*&, cloneTail : Node*&) : void\l+ printList() : void\l}"] 
+    4[label = "{&laquo;struct&raquo;\nNode|+ data : Batch&\l+ next : Node*\l}"]
     5[label = "{&laquo;struct&raquo;\nBatch|+ units : int\l+ price : float}"]
-    6[label = "{&laquo;class&raquo;\nTransactionBuffer|- mBuffer : stringstream\l|+ TransactionBuffer()\l+ TransactionBuffer(s : string&)\l+ add(t : Transaction&) : void\l+ add(item : int&, type : char&, units : int&, price : float&) : void\l+ getStream() : stringstream&\l+ read(filename : string&) : void\l+ write(filename : string&) : void\l+ clear() : void\l}"]
+    6[label = "{&laquo;class&raquo;\nTransactionBuffer|- mBuffer : stringstream\l|+ TransactionBuffer()\l+ TransactionBuffer(s : const string&)\l+ add(t : Transaction) : void\l+ add(item : int, type : char, units : int, price : float) : void\l+ getStream() : stringstream&\l+ read(filename : const string&) : void\l+ write(filename : const string&) : void\l+ clear() : void\l}"]
     7[label = "{&laquo;struct&raquo;\nTransaction|+ item : int\l+ type : char\l+ units : int\l+ price : float\l}"]
 
     //7[label = "{|...|+ compactLabel(...)\l...}"]
