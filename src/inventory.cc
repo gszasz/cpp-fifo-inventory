@@ -89,7 +89,7 @@ void Inventory::execute(TransactionBuffer& backlog) {
     stringstream& backlogStream = backlog.getStream();
     string line;
     while (getline(backlogStream, line)) {
-        Transaction t;
+        Transaction t = { 0, '\0', 0, 0.0 };
         sscanf(line.c_str(), "%d%c %d %f", &t.item, &t.type, &t.units, &t.price);
         switch(t.type) {
         case 'B':
