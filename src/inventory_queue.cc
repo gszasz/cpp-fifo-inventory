@@ -16,7 +16,7 @@
  * details.
  *
  * You should have received a copy of the GNU General Public License along with
- * FIFO-inventory.  If not, see <http://www.gnu.org/licenses/>.
+ * FIFO-inventory.  If not, see <https://www.gnu.org/licenses/>.
  */
 
 #include <cstddef>  // required for NULL
